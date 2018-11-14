@@ -14,16 +14,6 @@ const SucNotification = ({ message }) => {
     </div>
   )
 }
-const ErrNotification = ({ message }) => {
-  if (message === null) {
-    return null
-  }
-  return (
-    <div className="error">
-      {message}
-    </div>
-  )
-}
 
 class App extends React.Component {
   constructor(props) {
@@ -33,8 +23,7 @@ class App extends React.Component {
       newName: '',
       newNumber: '',
       filter: '',
-      succee: null,
-      error: null
+      succee: null
     }
   }
 
@@ -84,15 +73,6 @@ class App extends React.Component {
             this.setState({succee: null})
           }, 5000)
         })
-        .catch(error => {
-          this.setState({
-            error: `Kontakti '${entryObject.name}' on jo valitettavasti poistettu palvelimelta`,
-            persons: this.state.persons.filter(p => p.id !== sameperson[0].id)
-          })
-          setTimeout(() => {
-            this.setState({error: null})
-          }, 5000)
-        })
       }
     }
   }
@@ -134,7 +114,6 @@ class App extends React.Component {
       <div>
         <h1>Puhelinluettelo</h1>
         <SucNotification message={this.state.succee}/>
-        <ErrNotification message={this.state.error}/>
         <Filtteri taa={this} />
         <LisaaTiedot taa={this} />
         <Numerot taa={this} />

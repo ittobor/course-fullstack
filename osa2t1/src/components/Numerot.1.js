@@ -12,7 +12,6 @@ const Numerot = ({ taa }) => {
               .map(person => 
               <div key={person.name}>
                 {person.name} {person.number} 
-                <button onClick={taa.removePersonOf(person.name, person.id)}>poista</button>
               </div>)}
           </ul>
         </div>
