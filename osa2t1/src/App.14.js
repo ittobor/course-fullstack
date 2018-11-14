@@ -1,5 +1,5 @@
 import React from 'react'
-import personService from './services/persons'
+import axios from 'axios'
 import Filtteri from './components/Filtteri'
 import Numerot from './components/Numerot'
 import LisaaTiedot from './components/LisaaTiedot'
@@ -16,10 +16,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    personService
-      .getAll()
-      .then(persons => {
-        this.setState({persons})
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        this.setState({ persons: response.data })
       })
   }
 
@@ -30,12 +30,13 @@ class App extends React.Component {
       number: this.state.newNumber
     }
 
+    //const persons = !this.state.persons.filter(person => person.name === entryObject.name).length ? this.state.persons.concat(entryObject) : this.state.persons
+
     if (!this.state.persons.filter(person => person.name === entryObject.name).length) {
-      personService
-      .create(entryObject)
-      .then(persons => {
+      axios.post('http://localhost:3001/persons', entryObject)
+      .then(response => {
         this.setState({
-          persons: this.state.persons.concat(persons),
+          persons: this.state.persons.concat(response.data),
           newName: '',
           newNumber: ''
         })
