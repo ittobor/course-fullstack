@@ -1,7 +1,7 @@
 import React from 'react'
 import personService from './services/persons'
 import Filtteri from './components/Filtteri'
-import Numerot from './components/Numerot'
+import Numerot from './components/Numerot.19'
 import LisaaTiedot from './components/LisaaTiedot'
 
 const SucNotification = ({ message }) => {

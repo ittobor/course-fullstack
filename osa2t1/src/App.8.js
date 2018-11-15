@@ -22,7 +22,7 @@ class App extends React.Component {
     }
 
     const persons = !this.state.persons.filter(person => person.name === entryObject.name).length ? this.state.persons.concat(entryObject) : this.state.persons
-
+    
     this.setState({
       persons,
       newName: '',

@@ -1,7 +1,7 @@
 import React from 'react'
 import personService from './services/persons'
 import Filtteri from './components/Filtteri'
-import Numerot from './components/Numerot'
+import Numerot from './components/Numerot.17'
 import LisaaTiedot from './components/LisaaTiedot'
 
 class App extends React.Component {
@@ -40,6 +40,20 @@ class App extends React.Component {
           newNumber: ''
         })
       })
+    } else {
+      const sameperson = this.state.persons.filter(person => person.name === entryObject.name)
+      if (window.confirm(`${sameperson[0].name} jo luettelossa, korvataanko vanha numero uudella?`)) {
+        personService
+        .update(entryObject, sameperson[0].id)
+        .then(person => {
+          const persons = this.state.persons.filter(p => p.id !== person.id)
+          this.setState({
+            persons: persons.concat(person),
+            newName: '',
+            newNumber: ''
+          })
+        })
+      }
     }
   }
 

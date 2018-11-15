@@ -1,7 +1,6 @@
 import React from 'react'
-import React from 'react'
 import Filtteri from './components/Filtteri'
-import Numerot from './components/Numerot'
+import Numerot from './components/Numerot.1'
 
 const LisaaTiedot = ({ taa }) => {
   return (
